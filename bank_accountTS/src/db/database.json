@@ -1,0 +1,17 @@
+[
+  {
+    "id": 1752194203935,
+    "name": "NName",
+    "telNum": "099222047",
+    "balance": 1,
+    "bankaccounts": [
+      {
+        "account": 1752194203935,
+        "balance": 0,
+        "type": "debit"
+      }
+    ],
+    "pin": "1234",
+    "history": []
+  }
+]

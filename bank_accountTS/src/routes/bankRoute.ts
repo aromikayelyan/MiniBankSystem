@@ -1,48 +1,70 @@
 import { Router } from "express";
-import { Accountdata } from "../interfaces/accountInterface";
-import BankAccount from "../controllers/bank";
-import { findAccount, getMyAccount } from "../utils/bankfunctions";
-import { Person } from "../controllers/person";
+import { deposite, findAccount, getMyAccount } from "../utils/bankfunctions";
+import { checkTakeCredit } from "../utils/TakeCredit";
+
 
 const router = Router()
 
 
 
-router.get('/:num', async (req, res) => {
+router.post('/transfer/:num', async (req, res) => {
     try {
-        const { pin } = req.body
-        const telNum = req.params.num    
-        const data = await getMyAccount(pin, telNum)
+        
 
-
-        return res.status(200).json(data)
     } catch (error) {
-        console.log(error)
+        return res.status(500).json({ error: 'Internal server error' });
     }
 })
 
 
-router.post('/create', (req, res) => {
+router.post('/deposite/:num', async (req, res) => {
     try {
-
-        const { name, pin, telNum }: Accountdata = req.body
+        const { amount } = req.body
+        const telNum = req.params.num
         const hisExist = findAccount(telNum)
 
-        if(hisExist){
-            return res.status(200).json({message: "your already exist"})
+        if (hisExist) {
+           deposite(telNum, amount)
         }
 
-        const clientData = new Person(name, telNum)
-        const client = new BankAccount(clientData, pin)
-
-        client.update()
-
-        return res.status(200).json(client)
+        return res.status(200).json(amount)
 
     } catch (error) {
-        console.log(error)
+        return res.status(500).json({ error: 'Internal server error' });
     }
 })
+
+
+
+router.post('/checkCredit/:num', async (req, res) => {
+    try {
+
+        const telNum = req.params.num
+        const { pin } = req.body
+        const hisExist = findAccount(telNum)
+        let message = ``
+        let sum = 0
+
+        if (hisExist) {
+            const account = await getMyAccount(pin, telNum)
+            if(account && typeof account !== 'string'){
+                 sum = checkTakeCredit(account.history)
+            }
+        }
+
+        if(sum > 0){
+           message += `The credit amount you are eligible for is $${sum}.`
+        }else{
+            message += 'you cant take credit'
+        }
+
+        return res.status(200).json({message})
+    } catch (error) {
+        return res.status(500).json({ error: 'Internal server error' });
+    }
+})
+
+
 
 
 export default router

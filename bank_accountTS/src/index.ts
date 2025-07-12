@@ -1,5 +1,7 @@
 import express from 'express';
-import router from './routes/bankRoute';
+import account from './routes/accountRoute';
+import bank from './routes/bankRoute';
+
 
 
 const PORT:number = 4000
@@ -8,7 +10,9 @@ const app = express()
 app.use(express.json())
 
 
-app.use('/bank', router)
+app.use('/account', account)
+app.use('/bank', bank)
+
 
 
 
@@ -16,7 +20,7 @@ app.use('/bank', router)
 function start(): void {
     try {
         app.listen(PORT, () => {
-            console.log(`server runnin on port ${PORT}`)
+            console.log(`server running on port ${PORT}`)
         })
     } catch (error) {
         console.log(error)

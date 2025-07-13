@@ -1,17 +1,10 @@
-import fs, { promises } from 'fs'
+import fs from 'fs'
 import { readFile, writeFile } from 'fs/promises';
 import { Accountdata } from "../interfaces/accountInterface";
 import { historyRecord } from '../interfaces/historyInterface';
 import { BankAccountType } from '../types/accountstype';
 
-
-
-
-
 const dbPath: string = './src/db/database.json';
-
-
-
 
 
 export function findAccount(telNum: string): boolean {
@@ -36,7 +29,6 @@ export function findAccount(telNum: string): boolean {
 }
 
 
-
 export async function getMyAccount(pin: string, telNum: string) {
   try {
     let accounts: Accountdata[] = []
@@ -59,6 +51,32 @@ export async function getMyAccount(pin: string, telNum: string) {
     // else {
     //   return 'Not Find'
     // }
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+
+
+
+export async function getAccount(telNum: string) {
+  try {
+    let accounts: Accountdata[] = []
+    let data = fs.readFileSync(dbPath, 'utf-8')
+
+    if (data) {
+      try {
+        accounts = JSON.parse(data)
+      } catch (error) {
+        console.log(error)
+      }
+    }
+    const account: Accountdata | undefined = accounts.find((client) => client.telNum === telNum);
+
+    if (account) {
+      return account
+    }
+
   } catch (error) {
     console.log(error)
   }
@@ -96,15 +114,10 @@ export function getBalance(bankaccounts: BankAccountType[]): number {
 export async function updateData(updatedData: Accountdata) {
   try {
 
-    fs.readFile(dbPath, 'utf-8', (err, data) => {
+    let data = await readFile(dbPath, 'utf-8')
+    let accounts: Accountdata[] = [];
 
-      if (err && err.code !== 'ENOENT') {
-        console.log(err)
-      }
-
-      let accounts: Accountdata[] = []
-
-      if (data) {
+    if (data) {
         try {
           accounts = JSON.parse(data)
         } catch (error) {
@@ -120,13 +133,39 @@ export async function updateData(updatedData: Accountdata) {
         accounts.push(updatedData);
       }
 
+    await writeFile(dbPath, JSON.stringify(accounts, null, 2), 'utf-8');
 
-      fs.writeFile(dbPath, JSON.stringify(accounts, null, 2), 'utf-8', (writeError) => {
-        if (writeError) {
-          console.log(writeError)
-        }
-      })
-    })
+    // fs.readFile(dbPath, 'utf-8', (err, data) => {
+
+    //   if (err && err.code !== 'ENOENT') {
+    //     console.log(err)
+    //   }
+
+    //   let accounts: Accountdata[] = []
+
+    //   if (data) {
+    //     try {
+    //       accounts = JSON.parse(data)
+    //     } catch (error) {
+    //       console.log(error)
+    //     }
+    //   }
+
+    //   const account: Accountdata | undefined = accounts.find((client) => client.telNum === updatedData.telNum);
+    //   if (account) {
+    //     Object.assign(account, updatedData);
+    //   }
+    //   else {
+    //     accounts.push(updatedData);
+    //   }
+
+
+    //   fs.writeFile(dbPath, JSON.stringify(accounts, null, 2), 'utf-8', (writeError) => {
+    //     if (writeError) {
+    //       console.log(writeError)
+    //     }
+    //   })
+    // })
   } catch (error) {
     console.log(error)
   }
@@ -143,11 +182,52 @@ export async function updateData(updatedData: Accountdata) {
 
 
 
-export function transfer(fromId: number, toTelNum: string, amount: number): void {
+export async function transfer(fromTelNum: string, toTelNum: string, amount: number, pin: string) {
   try {
+    const isfromAccount = findAccount(fromTelNum)
+    const istoAccount = findAccount(fromTelNum)
 
+    if (isfromAccount && istoAccount) {
+      let fromAccount = await getAccount(fromTelNum)
+      let toAccount = await getAccount(toTelNum)
+      if (fromAccount?.pin === pin && toAccount) {
+        fromAccount.bankaccounts.forEach((el, index)=>{
+          if (el.type === 'debit') {
+            if (el.balance - amount >= 0) {
+              fromAccount.bankaccounts[index].balance -= amount
+              fromAccount.balance -= amount
+            }
+          }
+        })
+        toAccount.bankaccounts.forEach((el, index)=>{
+          if(el.type === 'debit'){
+            toAccount.bankaccounts[index].balance += amount
+            toAccount.balance += amount
+          }
+        })
+
+        fromAccount.history.push({
+          action: 'transfer',
+          amount,
+        })
+
+        toAccount.history.push({
+          action: 'getTransfer',
+          amount,
+        })
+
+
+        await updateData(fromAccount)
+        await updateData(toAccount)
+
+        return 'done'
+      }
+    }
+
+    return 'reject'
+    
   } catch (error) {
-
+    console.log(error)
   }
 }
 
@@ -220,6 +300,11 @@ export async function cashwithdraw(telNum: string, amount: number, account: Acco
 }
 
 
+
+
+
+
+// =======================================================================================================================
 
 
 

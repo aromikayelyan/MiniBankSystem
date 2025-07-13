@@ -49,7 +49,19 @@ router.post('/create', (req, res) => {
 router.put('/update', (req, res) => {
     try {
 
-        
+        // сoming soon
+        return res.status(200).json({message:"updated"})
+
+    } catch (error) {
+        return res.status(500).json({ error: 'Internal server error' });
+    }
+})
+
+
+router.delete('/delete/:num', (req, res) => {
+    try {
+
+        // сoming soon
         return res.status(200).json({message:"updated"})
 
     } catch (error) {

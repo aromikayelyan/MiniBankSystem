@@ -35,7 +35,7 @@ export default class BankAccount {
     public sendMoney(telNum: string, pin: string, money: number): string {
         const user = findAccount(telNum)
         if (pin === this.pin && user && money > 0 && this.balance > money) {
-            transfer(this.id, telNum, money)
+            transfer(this.client.telNum, telNum, money, this.pin)
             return "done"
         } else {
             return "no access"

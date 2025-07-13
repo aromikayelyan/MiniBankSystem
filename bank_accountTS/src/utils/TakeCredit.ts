@@ -41,9 +41,13 @@ export function TakeCredit(account: Accountdata, creditSum: number): string {
         updateData(account)
         return 'done'
     }
-
     return "reject"
+}
 
+
+
+export function payCredit(account: Accountdata, creditSum: number){
+    // сoming soon
 }
 
 

@@ -1,7 +1,7 @@
 import { Accountdata } from "../interfaces/accountInterface";
 import {BankAccountType}  from "../types/accountstype";
 import { historyRecord } from "../interfaces/historyInterface";
-import { findAccount, getBalance, transfer, updateData } from "../utils/bankfunctions";
+import { deposite, findAccount, getBalance, transfer, updateData } from "../utils/bankfunctions";
 import { Person } from "./person";
 
 export default class BankAccount {
@@ -43,8 +43,8 @@ export default class BankAccount {
     }
 
     public deposit(depositMoney: number): string {
-        this.balance += depositMoney
-        return 'Done'
+        deposite(this.client.telNum, depositMoney)
+        return "Done"
     }
 
     public update(): void {
@@ -60,5 +60,4 @@ export default class BankAccount {
         updateData(updated)
     }
 }
-
 

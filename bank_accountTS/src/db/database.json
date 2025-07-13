@@ -1,17 +1,153 @@
 [
   {
-    "id": 1752337242127,
+    "id": 1752362632330,
     "name": "NName",
     "telNum": "099222047",
-    "balance": 405000,
+    "balance": 208300,
     "bankaccounts": [
       {
-        "account": 1752337242127,
-        "balance": 405000,
+        "account": 1752362632330,
+        "balance": 106200,
         "type": "debit"
+      },
+      {
+        "account": 1752365119976,
+        "balance": 20420,
+        "interestRate": 14,
+        "loanTerm": 36,
+        "type": "credit"
+      },
+      {
+        "account": 1752365121033,
+        "balance": 20420,
+        "interestRate": 14,
+        "loanTerm": 36,
+        "type": "credit"
+      },
+      {
+        "account": 1752365121834,
+        "balance": 20420,
+        "interestRate": 14,
+        "loanTerm": 36,
+        "type": "credit"
+      },
+      {
+        "account": 1752365122575,
+        "balance": 20420,
+        "interestRate": 14,
+        "loanTerm": 36,
+        "type": "credit"
+      },
+      {
+        "account": 1752365123322,
+        "balance": 20420,
+        "interestRate": 14,
+        "loanTerm": 36,
+        "type": "credit"
       }
     ],
     "pin": "1234",
-    "history": []
+    "history": [
+      {
+        "action": "deposite",
+        "amount": 9000
+      },
+      {
+        "action": "deposite",
+        "amount": 9000
+      },
+      {
+        "action": "deposite",
+        "amount": 9000
+      },
+      {
+        "action": "deposite",
+        "amount": 9000
+      },
+      {
+        "action": "deposite",
+        "amount": 9000
+      },
+      {
+        "action": "deposite",
+        "amount": 9000
+      },
+      {
+        "action": "deposite",
+        "amount": 9000
+      },
+      {
+        "action": "deposite",
+        "amount": 900
+      },
+      {
+        "action": "deposite",
+        "amount": 900
+      },
+      {
+        "action": "deposite",
+        "amount": 900
+      },
+      {
+        "action": "deposite",
+        "amount": 900
+      },
+      {
+        "action": "deposite",
+        "amount": 900
+      },
+      {
+        "action": "deposite",
+        "amount": 900
+      },
+      {
+        "action": "deposite",
+        "amount": 900
+      },
+      {
+        "action": "deposite",
+        "amount": 900
+      },
+      {
+        "action": "deposite",
+        "amount": 900
+      },
+      {
+        "action": "deposite",
+        "amount": 900
+      },
+      {
+        "action": "deposite",
+        "amount": 900
+      },
+      {
+        "action": "deposite",
+        "amount": 900
+      },
+      {
+        "action": "deposite",
+        "amount": 900
+      },
+      {
+        "action": "deposite",
+        "amount": 900
+      },
+      {
+        "action": "deposite",
+        "amount": 900
+      },
+      {
+        "action": "deposite",
+        "amount": 900
+      },
+      {
+        "action": "deposite",
+        "amount": 900
+      },
+      {
+        "action": "deposite",
+        "amount": 900
+      }
+    ]
   }
 ]

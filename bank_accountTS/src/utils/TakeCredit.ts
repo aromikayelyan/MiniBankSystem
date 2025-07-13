@@ -1,6 +1,10 @@
 
 import { historyRecord } from "../interfaces/historyInterface";
-
+import { Accountdata } from "../interfaces/accountInterface";
+import fs, { promises } from 'fs'
+import { readFile, writeFile } from 'fs/promises';
+import { updateData } from "./bankfunctions";
+import { BankAccountType } from "../types/accountstype";
 
 
 
@@ -19,6 +23,30 @@ export function checkTakeCredit(history: historyRecord[]): number {
     }
 
     return sum
+}
+
+
+
+export function TakeCredit(account: Accountdata, creditSum: number): string {
+    const sum = checkTakeCredit(account.history)
+
+
+    if(creditSum <= sum){
+        const creditAccount: BankAccountType = {
+            account: Date.now(),
+            balance: sum,
+            interestRate: 14,
+            loanTerm: 36,
+            type: 'credit'
+        }
+        account.balance += sum
+        account.bankaccounts.push(creditAccount)
+        updateData(account)
+        return 'done'
+    }
+
+    return "reject"
+
 }
 
 

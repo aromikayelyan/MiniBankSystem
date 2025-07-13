@@ -1,6 +1,6 @@
 import { Router } from "express";
-import { deposite, findAccount, getMyAccount } from "../utils/bankfunctions";
-import { checkTakeCredit } from "../utils/TakeCredit";
+import { deposite, findAccount, getBalance, getMyAccount } from "../utils/bankfunctions";
+import { checkTakeCredit, TakeCredit } from "../utils/TakeCredit";
 
 
 const router = Router()
@@ -38,7 +38,6 @@ router.post('/deposite/:num', async (req, res) => {
 
 router.post('/checkCredit/:num', async (req, res) => {
     try {
-
         const telNum = req.params.num
         const { pin } = req.body
         const hisExist = findAccount(telNum)
@@ -63,6 +62,61 @@ router.post('/checkCredit/:num', async (req, res) => {
         return res.status(500).json({ error: 'Internal server error' });
     }
 })
+
+
+router.post('/getBalance/:num', async (req, res) => {
+    try {
+
+        const telNum = req.params.num
+        const { pin } = req.body
+        const hisExist = findAccount(telNum)
+        let balance = 0
+        
+        
+
+        if (hisExist) {
+            const account = await getMyAccount(pin, telNum)
+            if(account){
+               balance = getBalance(account.bankaccounts) 
+            }
+        }
+
+        // if(balance>0){
+
+        // }else{
+
+        // }
+
+        return res.status(200).json(balance)
+    } catch (error) {
+        return res.status(500).json({ error: 'Internal server error' });
+    }
+})
+
+
+router.post('/takeCredit/:num', async (req, res) => {
+    try {
+
+        const telNum = req.params.num
+        const { pin, sum } = req.body
+        const hisExist = findAccount(telNum)
+        let message = ``
+        
+        if (hisExist) {
+            const account = await getMyAccount(pin, telNum)
+            if (account && typeof account !== 'string') {
+               message = TakeCredit(account, sum)
+            }
+        }
+
+        return res.status(200).json(message)
+
+    } catch (error) {
+        return res.status(500).json({ error: 'Internal server error' });
+    }
+})
+
+
 
 
 

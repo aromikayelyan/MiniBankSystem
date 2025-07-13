@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { deposite, findAccount, getBalance, getMyAccount } from "../utils/bankfunctions";
+import { cashwithdraw, deposite, findAccount, getBalance, getMyAccount } from "../utils/bankfunctions";
 import { checkTakeCredit, TakeCredit } from "../utils/TakeCredit";
 
 
@@ -58,6 +58,27 @@ router.post('/checkCredit/:num', async (req, res) => {
         }
 
         return res.status(200).json({message})
+    } catch (error) {
+        return res.status(500).json({ error: 'Internal server error' });
+    }
+})
+
+
+router.post('/moneyWithdraw/:num', async (req, res) => {
+    try {
+       const telNum = req.params.num
+        const { pin, sum } = req.body
+        const hisExist = findAccount(telNum)
+        
+        
+        if (hisExist) {
+            const account = await getMyAccount(pin, telNum)
+            if (account && typeof account !== 'string' && account.balance >= sum && sum > 0) {
+               cashwithdraw(telNum, sum, account)
+            }
+        }
+        return res.status(200).json(sum)
+
     } catch (error) {
         return res.status(500).json({ error: 'Internal server error' });
     }

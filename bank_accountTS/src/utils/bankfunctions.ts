@@ -11,6 +11,9 @@ import { BankAccountType } from '../types/accountstype';
 const dbPath: string = './src/db/database.json';
 
 
+
+
+
 export function findAccount(telNum: string): boolean {
   let accounts: Accountdata[] = []
   let data = fs.readFileSync(dbPath, 'utf-8')
@@ -32,13 +35,36 @@ export function findAccount(telNum: string): boolean {
   return false
 }
 
-export function transfer(fromId: number, toTelNum: string, amount: number): void {
+
+
+export async function getMyAccount(pin: string, telNum: string) {
   try {
+    let accounts: Accountdata[] = []
+    let data = fs.readFileSync(dbPath, 'utf-8')
 
+    if (data) {
+      try {
+        accounts = JSON.parse(data)
+      } catch (error) {
+        console.log(error)
+      }
+    }
+    const account: Accountdata | undefined = accounts.find((client) => client.telNum === telNum);
+
+    if (account) {
+      if (account.pin === pin) {
+        return account
+      }
+    } 
+    // else {
+    //   return 'Not Find'
+    // }
   } catch (error) {
-
+    console.log(error)
   }
 }
+
+
 
 
 export function getBalance(bankaccounts: BankAccountType[]): number {
@@ -51,6 +77,20 @@ export function getBalance(bankaccounts: BankAccountType[]): number {
 
   return balance
 }
+
+
+
+
+
+
+// =======================================================================================================================================
+
+
+
+
+
+
+
 
 
 export async function updateData(updatedData: Accountdata) {
@@ -95,33 +135,21 @@ export async function updateData(updatedData: Accountdata) {
 
 
 
-export async function getMyAccount(pin: string, telNum: string) {
+
+// =======================================================================================================================================
+
+
+
+
+
+
+export function transfer(fromId: number, toTelNum: string, amount: number): void {
   try {
-    let accounts: Accountdata[] = []
-    let data = fs.readFileSync(dbPath, 'utf-8')
 
-    if (data) {
-      try {
-        accounts = JSON.parse(data)
-      } catch (error) {
-        console.log(error)
-      }
-    }
-    const account: Accountdata | undefined = accounts.find((client) => client.telNum === telNum);
-
-    if (account) {
-      if (account.pin === pin) {
-        return account
-      }
-    } 
-    // else {
-    //   return 'Not Find'
-    // }
   } catch (error) {
-    console.log(error)
+
   }
 }
-
 
 
 export async function deposite(telNum: string, amount: number) {
@@ -158,6 +186,34 @@ export async function deposite(telNum: string, amount: number) {
     }
 
     await writeFile(dbPath, JSON.stringify(accounts, null, 2), 'utf-8');
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+
+
+export async function cashwithdraw(telNum: string, amount: number, account: Accountdata) {
+  try {
+    if (account && account.balance >= amount) {
+
+      account.balance -= amount
+      account.bankaccounts.forEach((el, index) => {
+        if (el.type === 'debit') {
+          account.bankaccounts[index].balance -= amount
+        }
+      })
+
+      const history: historyRecord = {
+        action: "withdraw",
+        amount,
+      };
+
+
+      account.history.push(history)
+      await updateData(account)
+    }
+
   } catch (error) {
     console.log(error)
   }

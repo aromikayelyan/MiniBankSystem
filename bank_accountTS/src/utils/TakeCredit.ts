@@ -1,8 +1,5 @@
-
 import { historyRecord } from "../interfaces/historyInterface";
 import { Accountdata } from "../interfaces/accountInterface";
-import fs, { promises } from 'fs'
-import { readFile, writeFile } from 'fs/promises';
 import { updateData } from "./bankfunctions";
 import { BankAccountType } from "../types/accountstype";
 

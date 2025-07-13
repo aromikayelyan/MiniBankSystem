@@ -3,11 +3,11 @@
     "id": 1752362632330,
     "name": "NName",
     "telNum": "099222047",
-    "balance": 208300,
+    "balance": 135100,
     "bankaccounts": [
       {
         "account": 1752362632330,
-        "balance": 106200,
+        "balance": 33000,
         "type": "debit"
       },
       {
@@ -147,6 +147,10 @@
       {
         "action": "deposite",
         "amount": 900
+      },
+      {
+        "action": "withdraw",
+        "amount": 18300
       }
     ]
   }

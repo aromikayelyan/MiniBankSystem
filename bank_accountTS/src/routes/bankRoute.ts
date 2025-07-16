@@ -7,16 +7,6 @@ const router = Router()
 
 
 
-router.post('/transfer/:num', async (req, res) => {
-    try {
-
-
-    } catch (error) {
-        return res.status(500).json({ error: 'Internal server error' });
-    }
-})
-
-
 router.post('/deposite/:num', async (req, res) => {
     try {
         const { amount } = req.body
@@ -98,7 +88,7 @@ router.post('/getBalance/:num', async (req, res) => {
             const account = await getMyAccount(pin, telNum)
             if (account) {
                 balance = getBalance(account.bankaccounts)
-                return res.status(200).json({ messaeg: 'done' })
+                return res.status(200).json({balance})
             }
         }
 
@@ -111,7 +101,7 @@ router.post('/getBalance/:num', async (req, res) => {
 
 
 
-router.post('/transferMoney/:num', async (req, res) => {
+router.post('/transfer/:num', async (req, res) => {
     try {
         const telNum = req.params.num
         const { pin, toTelNum, amount } = req.body

@@ -47,16 +47,49 @@
     "id": 1752447419101,
     "name": "NName",
     "telNum": "099222047",
-    "balance": 570000,
+    "balance": 155000,
     "bankaccounts": [
       {
         "account": 1752447419101,
-        "balance": 520000,
+        "balance": 155000,
         "type": "debit"
       },
       {
-        "account": 1752449101574,
+        "account": 1752672439536,
         "balance": 50000,
+        "duty": 57000,
+        "interestRate": 14,
+        "loanTerm": 36,
+        "type": "credit"
+      },
+      {
+        "account": 1752672443181,
+        "balance": 50000,
+        "duty": 57000,
+        "interestRate": 14,
+        "loanTerm": 36,
+        "type": "credit"
+      },
+      {
+        "account": 1752672445364,
+        "balance": 50000,
+        "duty": 57000,
+        "interestRate": 14,
+        "loanTerm": 36,
+        "type": "credit"
+      },
+      {
+        "account": 1752672446219,
+        "balance": 50000,
+        "duty": 57000,
+        "interestRate": 14,
+        "loanTerm": 36,
+        "type": "credit"
+      },
+      {
+        "account": 1752672446995,
+        "balance": 50000,
+        "duty": 57000,
         "interestRate": 14,
         "loanTerm": 36,
         "type": "credit"
@@ -111,6 +144,206 @@
       {
         "action": "deposite",
         "amount": 90000
+      },
+      {
+        "action": "withdraw",
+        "amount": 18300
+      },
+      {
+        "action": "withdraw",
+        "amount": 18300
+      },
+      {
+        "action": "withdraw",
+        "amount": 18300
+      },
+      {
+        "action": "withdraw",
+        "amount": 18300
+      },
+      {
+        "action": "withdraw",
+        "amount": 18300
+      },
+      {
+        "action": "withdraw",
+        "amount": 18300
+      },
+      {
+        "action": "withdraw",
+        "amount": 18300
+      },
+      {
+        "action": "withdraw",
+        "amount": 18300
+      },
+      {
+        "action": "withdraw",
+        "amount": 18300
+      },
+      {
+        "action": "withdraw",
+        "amount": 18300
+      },
+      {
+        "action": "withdraw",
+        "amount": 18300
+      },
+      {
+        "action": "withdraw",
+        "amount": 18300
+      },
+      {
+        "action": "withdraw",
+        "amount": 18300
+      },
+      {
+        "action": "withdraw",
+        "amount": 18300
+      },
+      {
+        "action": "withdraw",
+        "amount": 18300
+      },
+      {
+        "action": "withdraw",
+        "amount": 18300
+      },
+      {
+        "action": "withdraw",
+        "amount": 18300
+      },
+      {
+        "action": "withdraw",
+        "amount": 18300
+      },
+      {
+        "action": "withdraw",
+        "amount": 18300
+      },
+      {
+        "action": "withdraw",
+        "amount": 18300
+      },
+      {
+        "action": "withdraw",
+        "amount": 18300
+      },
+      {
+        "action": "withdraw",
+        "amount": 18300
+      },
+      {
+        "action": "withdraw",
+        "amount": 18300
+      },
+      {
+        "action": "withdraw",
+        "amount": 18300
+      },
+      {
+        "action": "withdraw",
+        "amount": 18300
+      },
+      {
+        "action": "withdraw",
+        "amount": 18300
+      },
+      {
+        "action": "withdraw",
+        "amount": 18300
+      },
+      {
+        "action": "withdraw",
+        "amount": 18300
+      },
+      {
+        "action": "withdraw",
+        "amount": 18300
+      },
+      {
+        "action": "withdraw",
+        "amount": 18300
+      },
+      {
+        "action": "withdraw",
+        "amount": 18300
+      },
+      {
+        "action": "withdraw",
+        "amount": 18300
+      },
+      {
+        "action": "withdraw",
+        "amount": 18300
+      },
+      {
+        "action": "withdraw",
+        "amount": 18300
+      },
+      {
+        "action": "withdraw",
+        "amount": 18300
+      },
+      {
+        "action": "withdraw",
+        "amount": 18300
+      },
+      {
+        "action": "withdraw",
+        "amount": 18300
+      },
+      {
+        "action": "withdraw",
+        "amount": 18300
+      },
+      {
+        "action": "withdraw",
+        "amount": 18300
+      },
+      {
+        "action": "withdraw",
+        "amount": 18300
+      },
+      {
+        "action": "withdraw",
+        "amount": 18300
+      },
+      {
+        "action": "withdraw",
+        "amount": 18300
+      },
+      {
+        "action": "withdraw",
+        "amount": 18300
+      },
+      {
+        "action": "withdraw",
+        "amount": 18300
+      },
+      {
+        "action": "withdraw",
+        "amount": 18300
+      },
+      {
+        "action": "withdraw",
+        "amount": 18300
+      },
+      {
+        "action": "withdraw",
+        "amount": 18300
+      },
+      {
+        "action": "withdraw",
+        "amount": 18300
+      },
+      {
+        "action": "withdraw",
+        "amount": 18300
+      },
+      {
+        "action": "withdraw",
+        "amount": 18300
       }
     ]
   }

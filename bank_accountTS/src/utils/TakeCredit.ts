@@ -2,6 +2,7 @@ import { historyRecord } from "../interfaces/historyInterface";
 import { Accountdata } from "../interfaces/accountInterface";
 import { updateData } from "./bankfunctions";
 import { BankAccountType } from "../types/accountstype";
+import { interestRates } from "./interestRates";
 
 
 
@@ -28,15 +29,31 @@ export function TakeCredit(account: Accountdata, creditSum: number): string {
     const sum = checkTakeCredit(account.history)
 
 
-    if(creditSum <= sum){
+    if (creditSum <= sum) {
+        const duty = sum + (sum * interestRates.consumer / 100)
+
         const creditAccount: BankAccountType = {
             account: Date.now(),
             balance: sum,
-            interestRate: 14,
+            duty,
+            interestRate: interestRates.consumer,
             loanTerm: 36,
             type: 'credit'
         }
+
         account.balance += sum
+
+        account.bankaccounts.forEach((el, index) => {
+            if (el.type === 'debit') {
+                account.bankaccounts[index].balance += sum
+            }
+        })
+
+        account.history.push({
+            action: "takeCredit",
+            amount: creditSum,
+        });
+
         account.bankaccounts.push(creditAccount)
         updateData(account)
         return 'done'
@@ -46,7 +63,7 @@ export function TakeCredit(account: Accountdata, creditSum: number): string {
 
 
 
-export function payCredit(account: Accountdata, creditSum: number){
+export function payCredit(account: Accountdata, creditSum: number) {
     // сoming soon
 }
 

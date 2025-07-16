@@ -7,7 +7,7 @@ import { BankAccountType } from '../types/accountstype';
 const dbPath: string = './src/db/database.json';
 
 
-export function findAccount(telNum: string): boolean {
+export  function findAccount(telNum: string): boolean {
   let accounts: Accountdata[] = []
   let data = fs.readFileSync(dbPath, 'utf-8')
 
@@ -47,10 +47,7 @@ export async function getMyAccount(pin: string, telNum: string) {
       if (account.pin === pin) {
         return account
       }
-    } 
-    // else {
-    //   return 'Not Find'
-    // }
+    }
   } catch (error) {
     console.log(error)
   }
@@ -72,11 +69,9 @@ export async function getAccount(telNum: string) {
       }
     }
     const account: Accountdata | undefined = accounts.find((client) => client.telNum === telNum);
-
     if (account) {
       return account
     }
-
   } catch (error) {
     console.log(error)
   }
@@ -135,37 +130,6 @@ export async function updateData(updatedData: Accountdata) {
 
     await writeFile(dbPath, JSON.stringify(accounts, null, 2), 'utf-8');
 
-    // fs.readFile(dbPath, 'utf-8', (err, data) => {
-
-    //   if (err && err.code !== 'ENOENT') {
-    //     console.log(err)
-    //   }
-
-    //   let accounts: Accountdata[] = []
-
-    //   if (data) {
-    //     try {
-    //       accounts = JSON.parse(data)
-    //     } catch (error) {
-    //       console.log(error)
-    //     }
-    //   }
-
-    //   const account: Accountdata | undefined = accounts.find((client) => client.telNum === updatedData.telNum);
-    //   if (account) {
-    //     Object.assign(account, updatedData);
-    //   }
-    //   else {
-    //     accounts.push(updatedData);
-    //   }
-
-
-    //   fs.writeFile(dbPath, JSON.stringify(accounts, null, 2), 'utf-8', (writeError) => {
-    //     if (writeError) {
-    //       console.log(writeError)
-    //     }
-    //   })
-    // })
   } catch (error) {
     console.log(error)
   }
@@ -185,7 +149,7 @@ export async function updateData(updatedData: Accountdata) {
 export async function transfer(fromTelNum: string, toTelNum: string, amount: number, pin: string) {
   try {
     const isfromAccount = findAccount(fromTelNum)
-    const istoAccount = findAccount(fromTelNum)
+    const istoAccount = findAccount(toTelNum)
 
     if (isfromAccount && istoAccount) {
       let fromAccount = await getAccount(fromTelNum)
@@ -248,7 +212,7 @@ export async function deposite(telNum: string, amount: number) {
 
     const account = accounts.find((client) => client.telNum === telNum);
 
-    if (account) {
+    if (account && amount > 0) {
       account.bankaccounts.forEach((element) => {
         if (element.type === 'debit') {
           element.balance += amount;
@@ -275,7 +239,7 @@ export async function deposite(telNum: string, amount: number) {
 
 export async function cashwithdraw(telNum: string, amount: number, account: Accountdata) {
   try {
-    if (account && account.balance >= amount) {
+    if (account && account.balance >= amount && amount > 0) {
 
       account.balance -= amount
       account.bankaccounts.forEach((el, index) => {
@@ -298,10 +262,6 @@ export async function cashwithdraw(telNum: string, amount: number, account: Acco
     console.log(error)
   }
 }
-
-
-
-
 
 
 // =======================================================================================================================

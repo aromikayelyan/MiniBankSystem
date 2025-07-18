@@ -3,16 +3,28 @@
     "id": 1752446046479,
     "name": "NName",
     "telNum": "055222047",
-    "balance": 50000,
+    "balance": 56000,
     "bankaccounts": [
       {
         "account": 1752446046479,
-        "balance": 50000,
+        "balance": 56000,
         "type": "debit"
       }
     ],
     "pin": "1234",
     "history": [
+      {
+        "action": "getTransfer",
+        "amount": 2000
+      },
+      {
+        "action": "getTransfer",
+        "amount": 2000
+      },
+      {
+        "action": "getTransfer",
+        "amount": 2000
+      },
       {
         "action": "getTransfer",
         "amount": 2000
@@ -47,11 +59,11 @@
     "id": 1752447419101,
     "name": "NName",
     "telNum": "099222047",
-    "balance": 155000,
+    "balance": 244100,
     "bankaccounts": [
       {
         "account": 1752447419101,
-        "balance": 155000,
+        "balance": 244100,
         "type": "debit"
       },
       {
@@ -93,6 +105,30 @@
         "interestRate": 14,
         "loanTerm": 36,
         "type": "credit"
+      },
+      {
+        "account": 1752797308949,
+        "balance": 50000,
+        "duty": 57000,
+        "interestRate": 14,
+        "loanTerm": 36,
+        "type": "credit"
+      },
+      {
+        "account": 1752797318848,
+        "balance": 50000,
+        "duty": 57000,
+        "interestRate": 14,
+        "loanTerm": 36,
+        "type": "credit"
+      },
+      {
+        "account": 1752797321798,
+        "balance": 50000,
+        "duty": 57000,
+        "interestRate": 14,
+        "loanTerm": 36,
+        "type": "credit"
       }
     ],
     "pin": "1234",
@@ -344,7 +380,58 @@
       {
         "action": "withdraw",
         "amount": 18300
+      },
+      {
+        "action": "takeCredit",
+        "amount": 15000
+      },
+      {
+        "action": "takeCredit",
+        "amount": 15000
+      },
+      {
+        "action": "takeCredit",
+        "amount": 15000
+      },
+      {
+        "action": "withdraw",
+        "amount": 18300
+      },
+      {
+        "action": "withdraw",
+        "amount": 18300
+      },
+      {
+        "action": "withdraw",
+        "amount": 18300
+      },
+      {
+        "action": "transfer",
+        "amount": 2000
+      },
+      {
+        "action": "transfer",
+        "amount": 2000
+      },
+      {
+        "action": "transfer",
+        "amount": 2000
       }
     ]
+  },
+  {
+    "id": 1752796672861,
+    "name": "NName",
+    "telNum": "077222047",
+    "balance": 0,
+    "bankaccounts": [
+      {
+        "account": 1752796672861,
+        "balance": 0,
+        "type": "debit"
+      }
+    ],
+    "pin": "1234",
+    "history": []
   }
 ]

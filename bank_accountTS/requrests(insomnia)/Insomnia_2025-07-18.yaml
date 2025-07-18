@@ -1,0 +1,286 @@
+type: collection.insomnia.rest/5.0
+name: BankAccount
+meta:
+  id: wrk_90c699689ad84625be0b3350f60050ed
+  created: 1752163869342
+  modified: 1752163869342
+collection:
+  - url: localhost:4000/account/create
+    name: New Request
+    meta:
+      id: req_4b1ce2dca164454f8793b981c25c7174
+      created: 1752163877012
+      modified: 1752796671373
+      isPrivate: false
+      sortKey: -1752163877012
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+        	"name":"NName",
+        	"pin":"1234",
+        	"telNum":"077222047"
+        }
+    headers:
+      - name: Content-Type
+        value: application/json
+      - name: User-Agent
+        value: insomnia/11.1.0
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: localhost:4000/account/055222047
+    name: GetMyAccount
+    meta:
+      id: req_ed76a98d925c4076b74e40f9ac144113
+      created: 1752164174868
+      modified: 1752796628123
+      isPrivate: false
+      sortKey: -1752082458487
+    method: GET
+    body:
+      mimeType: application/json
+      text: |-
+        {
+        	"pin":"1234"
+        }
+    parameters:
+      - id: pair_107bbca7761e45f7a8dd25437f2191bc
+        disabled: false
+    headers:
+      - name: Content-Type
+        value: application/json
+      - name: User-Agent
+        value: insomnia/11.1.0
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: localhost:4000/bank/deposite/099222047
+    name: deposite
+    meta:
+      id: req_fc708d2780eb4754b967eab825e149b4
+      created: 1752332225725
+      modified: 1752447422751
+      isPrivate: false
+      sortKey: -1752123167749.5
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+        	"amount": 90000
+        }
+    headers:
+      - name: Content-Type
+        value: application/json
+      - name: User-Agent
+        value: insomnia/11.1.0
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: localhost:4000/account/099222047
+    name: takecredit
+    meta:
+      id: req_0ebc1c8126764c2f9d097fb148335651
+      created: 1752336714574
+      modified: 1752336714574
+      isPrivate: false
+      sortKey: -1752041749224.5
+    method: GET
+    body:
+      mimeType: application/json
+      text: |-
+        {
+        	"pin":"1234"
+        }
+    parameters:
+      - id: pair_107bbca7761e45f7a8dd25437f2191bc
+        disabled: false
+    headers:
+      - name: Content-Type
+        value: application/json
+      - name: User-Agent
+        value: insomnia/11.1.0
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: localhost:4000/bank/checkCredit/099222047
+    name: chekkcredit
+    meta:
+      id: req_cec9396a6b694e39a2e5a1326aaa5c92
+      created: 1752336796762
+      modified: 1752364163303
+      isPrivate: false
+      sortKey: -1752102813118.25
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+        	"amount": 7000,
+        	"pin": "1234"
+        }
+    headers:
+      - name: Content-Type
+        value: application/json
+      - name: User-Agent
+        value: insomnia/11.1.0
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: localhost:4000/bank/getBalance/099222047
+    name: getbalance
+    meta:
+      id: req_aa430c28c7404669915efc86be76ba9e
+      created: 1752363984151
+      modified: 1752364191411
+      isPrivate: false
+      sortKey: -1752092635802.625
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+
+        	"pin": "1234"
+        }
+    headers:
+      - name: Content-Type
+        value: application/json
+      - name: User-Agent
+        value: insomnia/11.1.0
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: localhost:4000/bank/takeCredit/099222047
+    name: tekecredit
+    meta:
+      id: req_a51120809432473b9ce53ba2dfa96a33
+      created: 1752365017584
+      modified: 1752365052262
+      isPrivate: false
+      sortKey: -1752097724460.4375
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+        	"sum": 15000,
+        	"pin": "1234"
+        }
+    headers:
+      - name: Content-Type
+        value: application/json
+      - name: User-Agent
+        value: insomnia/11.1.0
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: localhost:4000/bank/moneyWithdraw/099222047
+    name: moneyWithdraw
+    meta:
+      id: req_54cb0a72907c4c9fba6f985bbf119595
+      created: 1752366666288
+      modified: 1752366689323
+      isPrivate: false
+      sortKey: -1752095180131.5312
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+        	"sum": 18300,
+        	"pin": "1234"
+        }
+    headers:
+      - name: Content-Type
+        value: application/json
+      - name: User-Agent
+        value: insomnia/11.1.0
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: localhost:4000/bank/transfer/099222047
+    name: transfer
+    meta:
+      id: req_ddfccd9101c04c97b51097412d229de6
+      created: 1752447156965
+      modified: 1752797445914
+      isPrivate: false
+      sortKey: -1752112990433.875
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+        	"pin": "1234",
+        	"toTelNum": "055222047",
+        	"amount": 2000
+        }
+    headers:
+      - name: Content-Type
+        value: application/json
+      - name: User-Agent
+        value: insomnia/11.1.0
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+cookieJar:
+  name: Default Jar
+  meta:
+    id: jar_1f314f53cebcd76a83e1615d28d2a12d0889a29d
+    created: 1752163869352
+    modified: 1752163869352
+environments:
+  name: Base Environment
+  meta:
+    id: env_1f314f53cebcd76a83e1615d28d2a12d0889a29d
+    created: 1752163869348
+    modified: 1752163869348
+    isPrivate: false
